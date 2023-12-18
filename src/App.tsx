@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import AppCSS from './App.module.css'
+import TextShower from './TextShower'
 
 function App() {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    console.log('count is', count)
+    const message = `count is ${count}`
+    console.log(message)
   }, [count])
 
   return (
     <>
-      <div className={AppCSS.color}>
+      <div className='logos'>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -21,6 +22,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <TextShower />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
