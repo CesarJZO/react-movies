@@ -3,11 +3,11 @@
  * @param props Text
  * @returns A component
  */
-export default function TextShower(props: TextShowerProps) {
+export default function Head(props: TextShowerProps) {
   return (
-    <span>
+    <h1>
       {props.text}
-    </span>
+    </h1>
   )
 }
 
@@ -15,6 +15,6 @@ interface TextShowerProps {
   text: string
 }
 
-TextShower.defaultProps = {
+Head.defaultProps = {
   text: 'Hello, World!'
 } as TextShowerProps;
