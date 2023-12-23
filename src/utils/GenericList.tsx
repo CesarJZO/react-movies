@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import Loading from "./Loading";
 
 export default function GenericList<T>({
@@ -18,7 +18,7 @@ export default function GenericList<T>({
 
 interface GenericListProps<T> {
   list: T[];
-  children: ReactElement;
-  loadingUI?: ReactElement;
-  emptyListUI?: ReactElement;
+  children: ReactNode;
+  loadingUI?: ReactNode;
+  emptyListUI?: ReactNode;
 }
