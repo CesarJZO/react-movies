@@ -4,8 +4,8 @@ import { landingPageDTO } from "./movies/movies.model";
 
 function App() {
   const [movies, setMovies] = useState<landingPageDTO>({
-    inTheaters: [],
-    upcomingReleases: [],
+    inTheaters: undefined,
+    upcomingReleases: undefined,
   });
 
   useEffect(() => {
@@ -38,18 +38,6 @@ function App() {
             poster:
               "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
           },
-          {
-            id: 5,
-            title: "The Matrix Reloaded",
-            poster:
-              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-          },
-          {
-            id: 6,
-            title: "The Matrix Revolutions",
-            poster:
-              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-          },
         ],
       });
 
@@ -61,7 +49,7 @@ function App() {
     <>
       <main>
         <h1>In theaters</h1>
-        <MovieList movies={movies.upcomingReleases} />
+        <MovieList movies={movies.inTheaters} />
 
         <h1>Upcoming releases</h1>
         <MovieList movies={movies.upcomingReleases} />

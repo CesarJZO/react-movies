@@ -6,9 +6,9 @@ import styles from "./movieList.module.css";
 
 export default function MovieList({ movies }: MovieListProps) {
   if (!movies) {
-    return <p>No movies found!</p>;
-  } else if (movies.length === 0) {
     return <Loading />;
+  } else if (movies.length === 0) {
+    return <p>No movies found!</p>;
   } else {
     return (
       <section className={styles.movieList}>
