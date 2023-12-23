@@ -9,7 +9,7 @@ export default function Movie({ movie: { id, title, poster } }: MovieProps) {
       <a href={link}>
         <img className={styles.poster} src={poster} alt={`${title}'s poster`} />
       </a>
-      <p>
+      <p className={styles.title}>
         <a href={link}>{title}</a>
       </p>
     </div>
