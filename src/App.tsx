@@ -61,7 +61,7 @@ function App() {
     <>
       <main>
         <h1>In theaters</h1>
-        <MovieList movies={movies.inTheaters} />
+        <MovieList movies={movies.upcomingReleases} />
 
         <h1>Upcoming releases</h1>
         <MovieList movies={movies.upcomingReleases} />
