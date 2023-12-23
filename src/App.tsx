@@ -1,51 +1,70 @@
+import { useEffect, useState } from "react";
 import MovieList from "./movies/MovieList";
-import { movie } from "./movies/movies.model";
+import { landingPageDTO } from "./movies/movies.model";
 
 function App() {
-  const featuredMovies: movie[] = [
-    {
-      id: 1,
-      title: "The Godfather",
-      poster: "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-    },
-    {
-      id: 2,
-      title: "The Godfather: Part II",
-      poster: "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-    },
-    {
-      id: 3,
-      title: "The Godfather: Part III",
-      poster: "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-    },
-  ];
+  const [movies, setMovies] = useState<landingPageDTO>({
+    inTheaters: [],
+    upcomingReleases: [],
+  });
 
-  const toBeReleasedMovies: movie[] = [
-    {
-      id: 4,
-      title: "The Matrix",
-      poster: "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-    },
-    {
-      id: 5,
-      title: "The Matrix Reloaded",
-      poster: "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-    },
-    {
-      id: 6,
-      title: "The Matrix Revolutions",
-      poster: "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-    },
-  ];
+  useEffect(() => {
+    const falseTimer = setTimeout(() => {
+      setMovies({
+        inTheaters: [
+          {
+            id: 1,
+            title: "The Godfather",
+            poster:
+              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
+          },
+          {
+            id: 2,
+            title: "The Godfather: Part II",
+            poster:
+              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
+          },
+          {
+            id: 3,
+            title: "The Godfather: Part III",
+            poster:
+              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
+          },
+        ],
+        upcomingReleases: [
+          {
+            id: 4,
+            title: "The Matrix",
+            poster:
+              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
+          },
+          {
+            id: 5,
+            title: "The Matrix Reloaded",
+            poster:
+              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
+          },
+          {
+            id: 6,
+            title: "The Matrix Revolutions",
+            poster:
+              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
+          },
+        ],
+      });
+
+      return () => clearTimeout(falseTimer);
+    }, 1000);
+  }, []);
 
   return (
     <>
       <main>
-        <h1>Featured ⭐</h1>
-        <MovieList movies={featuredMovies} />
+        <h1>In theaters</h1>
+        <MovieList movies={movies.inTheaters} />
 
-        <h1>To be released 🍿</h1>
-        <MovieList movies={toBeReleasedMovies} />
+        <h1>Upcoming releases</h1>
+        <MovieList movies={movies.upcomingReleases} />
       </main>
     </>
   );

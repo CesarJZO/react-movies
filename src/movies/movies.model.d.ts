@@ -3,3 +3,8 @@ export interface movie {
   title: string;
   poster: string;
 }
+
+export interface landingPageDTO {
+  inTheaters: movie[];
+  upcomingReleases: movie[];
+}
