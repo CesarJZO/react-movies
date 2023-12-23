@@ -1,23 +1,19 @@
 import Movie from "./Movie";
 import { movie } from "./movies.model";
-import Loading from "../utils/Loading";
 
 import styles from "./movieList.module.css";
+import GenericList from "../utils/GenericList";
 
 export default function MovieList({ movies }: MovieListProps) {
-  if (!movies) {
-    return <Loading />;
-  } else if (movies.length === 0) {
-    return <p>No movies found!</p>;
-  } else {
-    return (
+  return (
+    <GenericList list={movies!}>
       <section className={styles.movieList}>
-        {movies.map((movie) => (
+        {movies?.map((movie) => (
           <Movie key={movie.id} movie={movie} />
         ))}
       </section>
-    );
-  }
+    </GenericList>
+  );
 }
 
 interface MovieListProps {
