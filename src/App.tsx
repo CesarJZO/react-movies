@@ -1,8 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Menu from "./utils/Menu";
-import GenresIndex from "./genres/GenresIndex";
-import LandingPage from "./LandingPage";
+import routes from "./route-config";
 
 function App() {
   return (
@@ -12,8 +11,13 @@ function App() {
 
         <main>
           <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/genres" element={<GenresIndex />} />
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={<route.component />}
+              />
+            ))}
           </Routes>
         </main>
       </BrowserRouter>
