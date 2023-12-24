@@ -12,6 +12,18 @@ export default function Menu() {
         <NavLink className={styles.link} to="/genres">
           Genres
         </NavLink>
+        <NavLink className={styles.link} to="/movies">
+          Movies
+        </NavLink>
+        <NavLink className={styles.link} to="/actors">
+          Actors
+        </NavLink>
+        <NavLink className={styles.link} to="/theaters">
+          Theaters
+        </NavLink>
+        <NavLink className={styles.link} to="/movies/create">
+          Create Movie
+        </NavLink>
       </nav>
     </header>
   );
