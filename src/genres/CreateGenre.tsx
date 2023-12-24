@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 export default function CreateGenre() {
+  const navigate = useNavigate();
   return (
-    <div>
-      <h1>Create Genre</h1>
-    </div>
+    <>
+      <h2>Create Genre</h2>
+      <button onClick={() => navigate("/genres")}>
+        Save
+      </button>
+    </>
   );
 }
