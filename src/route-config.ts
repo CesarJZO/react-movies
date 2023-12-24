@@ -15,6 +15,7 @@ import UpdateMovie from "./movies/UpdateMovie";
 import TheatersIndex from "./theaters/TheatersIndex";
 import CreateTheater from "./theaters/CreateTheater";
 import UpdateTheater from "./theaters/UpdateTheater";
+import RedirectToLanding from "./utils/RedirectToLanding";
 
 const routes = [
   { path: "/genres/create", component: CreateGenre },
@@ -34,6 +35,7 @@ const routes = [
   { path: "theaters", component: TheatersIndex },
 
   { path: "/", component: LandingPage },
+  { path: "*", component: RedirectToLanding }
 ];
 
 export default routes;
