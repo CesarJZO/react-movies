@@ -1,53 +1,10 @@
-import { useEffect, useState } from "react";
-import MovieList from "./movies/MovieList";
-import { landingPageDTO } from "./movies/movies.model";
-import Menu from "./utils/Menu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Menu from "./utils/Menu";
 import GenresIndex from "./genres/GenresIndex";
+import LandingPage from "./LandingPage";
 
 function App() {
-  const [movies, setMovies] = useState<landingPageDTO>({
-    inTheaters: undefined,
-    upcomingReleases: undefined,
-  });
-
-  useEffect(() => {
-    const falseTimer = setTimeout(() => {
-      setMovies({
-        inTheaters: [
-          {
-            id: 1,
-            title: "The Godfather",
-            poster:
-              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-          },
-          {
-            id: 2,
-            title: "The Godfather: Part II",
-            poster:
-              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-          },
-          {
-            id: 3,
-            title: "The Godfather: Part III",
-            poster:
-              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-          },
-        ],
-        upcomingReleases: [
-          {
-            id: 4,
-            title: "The Matrix",
-            poster:
-              "https://i.ebayimg.com/images/g/oFkAAOSwoWRjZOHS/s-l1200.webp",
-          },
-        ],
-      });
-
-      return () => clearTimeout(falseTimer);
-    }, 1000);
-  }, []);
-
   return (
     <>
       <BrowserRouter>
@@ -55,19 +12,7 @@ function App() {
 
         <main>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <h2>In Theaters</h2>
-                  <MovieList movies={movies.inTheaters} />
-
-                  <h2>Upcoming Releases</h2>
-                  <MovieList movies={movies.upcomingReleases} />
-                </>
-              }
-            />
-
+            <Route path="/" element={<LandingPage />} />
             <Route path="/genres" element={<GenresIndex />} />
           </Routes>
         </main>
