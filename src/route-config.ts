@@ -18,15 +18,15 @@ import UpdateTheater from "./theaters/UpdateTheater";
 
 const routes = [
   { path: "/genres/create", component: CreateGenre },
-  { path: "/genres/update", component: UpdateGenre },
+  { path: "/genres/update/:id", component: UpdateGenre },
   { path: "/genres", component: GenresIndex },
 
   { path: "/actors/create", component: CreateActor },
-  { path: "/actors/update", component: UpdateActor },
+  { path: "/actors/update/:id", component: UpdateActor },
   { path: "/actors", component: ActorsIndex },
 
   { path: "/movies/create", component: CreateMovie },
-  { path: "/movies/update", component: UpdateMovie },
+  { path: "/movies/update/:id", component: UpdateMovie },
   { path: "/movies", component: MoviesIndex },
 
   { path: "theaters/create", component: CreateTheater },
