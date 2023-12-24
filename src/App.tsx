@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Menu from "./utils/Menu";
 import routes from "./route-config";
 
+import "./App.module.css";
+
 function App() {
   return (
     <>
