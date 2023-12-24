@@ -1,13 +1,30 @@
-import { useNavigate } from "react-router-dom";
+import { Field, Form, Formik } from "formik";
+
+import Button from "../utils/Button";
+import { Link } from "react-router-dom";
 
 export default function CreateGenre() {
-  const navigate = useNavigate();
   return (
     <>
       <h2>Create Genre</h2>
-      <button onClick={() => navigate("/genres")}>
-        Save
-      </button>
+
+      <Formik
+        initialValues={{
+          name: "Your name",
+        }}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        <Form>
+          <fieldset>
+            <label htmlFor="name">Name</label>
+            <Field id="name" name="name" placeholder="Your name" />
+          </fieldset>
+          <Button type="submit">Save</Button>
+          <Link to="/genres">Cancel</Link>
+        </Form>
+      </Formik>
     </>
   );
 }
