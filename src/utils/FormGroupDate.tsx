@@ -2,7 +2,8 @@ import { useFormikContext } from "formik";
 import FormGroupError from "./FormGroupError";
 
 export default function FormGroupDate({ field, label }: FormGroupDateProps) {
-  const { values, validateForm, touched, errors } = useFormikContext();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { values, validateForm, touched, errors } = useFormikContext<any>();
   return (
     <fieldset>
       <label htmlFor={field}>{label}</label>
@@ -19,7 +20,7 @@ export default function FormGroupDate({ field, label }: FormGroupDateProps) {
 
         }
       />
-      {touched[field] && errors[field] ? <FormGroupError message={errors[field]?.toString()} /> : <></>}
+      {touched[field] && errors[field] ? <FormGroupError message={errors[field]!.toString()} /> : <></>}
     </fieldset>
   );
 }
