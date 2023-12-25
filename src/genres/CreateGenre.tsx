@@ -19,7 +19,7 @@ export default function CreateGenre() {
           console.log(values);
         }}
         validationSchema={Yup.object({
-          name: Yup.string().required("Required"),
+          name: Yup.string().required("Required").firstLetterUppercase(),
         })}
       >
         <Form>

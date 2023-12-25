@@ -4,6 +4,9 @@ import Menu from "./utils/Menu";
 import routes from "./route-config";
 
 import "./App.module.css";
+import configureValidations from "./validations";
+
+configureValidations();
 
 function App() {
   return (
