@@ -1,7 +1,10 @@
-import { Field, Form, Formik } from "formik";
+import { Link } from "react-router-dom";
+
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 import Button from "../utils/Button";
-import { Link } from "react-router-dom";
+import FormGroupText from "../utils/FormGroupText";
 
 export default function CreateGenre() {
   return (
@@ -10,17 +13,17 @@ export default function CreateGenre() {
 
       <Formik
         initialValues={{
-          name: "Your name",
+          name: "",
         }}
         onSubmit={(values) => {
           console.log(values);
         }}
+        validationSchema={Yup.object({
+          name: Yup.string().required("Required"),
+        })}
       >
         <Form>
-          <fieldset>
-            <label htmlFor="name">Name</label>
-            <Field id="name" name="name" placeholder="Your name" />
-          </fieldset>
+          <FormGroupText field="name" label="Name" />
           <Button type="submit">Save</Button>
           <Link to="/genres">Cancel</Link>
         </Form>
