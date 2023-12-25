@@ -7,15 +7,13 @@ export default function FormGroupText({
   placeholder,
 }: FormGroupTextProps) {
   return (
-    <>
-      <fieldset>
-        {label ? <label htmlFor={field}>{label}</label> : null}
-        <Field id={field} name={field} placeholder={placeholder} />
-        <ErrorMessage name={field}>
-          {(message) => <FormGroupError message={message} />}
-        </ErrorMessage>
-      </fieldset>
-    </>
+    <fieldset>
+      {label ? <label htmlFor={field}>{label}</label> : null}
+      <Field id={field} name={field} placeholder={placeholder} />
+      <ErrorMessage name={field}>
+        {(message) => <FormGroupError message={message} />}
+      </ErrorMessage>
+    </fieldset>
   );
 }
 
