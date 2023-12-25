@@ -4,6 +4,7 @@ import FormGroupText from "../utils/FormGroupText";
 import Button from "../utils/Button";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import FormGroupDate from "../utils/FormGroupDate";
 
 export default function ActorsForm({ model, onSubmit }: ActorsFormProps) {
   return (
@@ -19,6 +20,7 @@ export default function ActorsForm({ model, onSubmit }: ActorsFormProps) {
       {(formikProps) => (
         <Form>
           <FormGroupText field="name" label="Name" />
+          <FormGroupDate field="dateOfBirth" label="Date of Birth" />
 
           <Button disabled={formikProps.isSubmitting} type="submit">
             Save
