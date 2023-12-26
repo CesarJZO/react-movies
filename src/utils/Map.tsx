@@ -15,8 +15,8 @@ const DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-export default function Map({ height }: MapProps) {
-  const [coords, setCoords] = useState<coordsDTO[]>([]);
+export default function Map({ height, coordinates, handleMapClick }: MapProps) {
+  const [coords, setCoords] = useState<coordsDTO[]>(coordinates);
   return (
     <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: height }}>
       <TileLayer
@@ -26,6 +26,7 @@ export default function Map({ height }: MapProps) {
       <MapClick
         setCoords={(coords) => {
           setCoords([coords]);
+          handleMapClick(coords);
         }}
       />
       {coords.map((coords, index) => (
@@ -37,10 +38,12 @@ export default function Map({ height }: MapProps) {
 
 export interface MapProps {
   height: string;
+  coordinates: coordsDTO[];
+  handleMapClick: (coords: coordsDTO) => void;
 }
 
 Map.defaultProps = {
-  height: "500px",
+  height: "300px",
 };
 
 function MapClick({ setCoords }: MapClickProps) {
