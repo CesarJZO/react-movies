@@ -11,6 +11,7 @@ import FormGroupImage from "../utils/forms/FormGroupImage";
 import SelectorMultiple, {
   SelectorMultipleModel,
 } from "../utils/SelectorMultiple";
+import TypeAheadActors from "../actors/TypeAheadActors";
 import Button from "../utils/Button";
 
 import { movieCreationDTO } from "./movies.model";
@@ -84,6 +85,8 @@ export default function MoviesForm(props: MoviesFormProps) {
               }}
             />
           </div>
+
+            <TypeAheadActors actors={[]} />
 
           <Button disabled={formikProps.isSubmitting} type="submit">
             Save
