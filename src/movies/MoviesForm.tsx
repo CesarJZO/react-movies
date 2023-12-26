@@ -17,27 +17,32 @@ import Button from "../utils/Button";
 import { movieCreationDTO } from "./movies.model";
 import { genreDTO } from "../genres/genres.model";
 import { theaterDTO } from "../theaters/theaters.model";
+import { actorMovieDTO } from "../actors/actors.model";
 
 export default function MoviesForm(props: MoviesFormProps) {
   const { model, onSubmit } = props;
 
-  const map = (array: { id: number, name: string }[]): SelectorMultipleModel[] => {
-    return array.map(value => ({ id: value.id, name: value.name }))
-  }
+  const map = (
+    array: { id: number; name: string }[]
+  ): SelectorMultipleModel[] => {
+    return array.map((value) => ({ id: value.id, name: value.name }));
+  };
 
   const [selectedGenres, setSelectedGenres] = useState<SelectorMultipleModel[]>(
     map(props.selectedGenres)
   );
-  const [nonSelectedGenres, setNonSelectedGenres] = useState<SelectorMultipleModel[]>(
-    map(props.nonSelectedGenres)
-  );
+  const [nonSelectedGenres, setNonSelectedGenres] = useState<
+    SelectorMultipleModel[]
+  >(map(props.nonSelectedGenres));
 
-  const [selectedTheaters, setSelectedTheaters] = useState<SelectorMultipleModel[]>(
-    map(props.selectedTheaters)
-  );
-  const [nonSelectedTheaters, setNonSelectedTheaters] = useState<SelectorMultipleModel[]>(
-    map(props.selectedTheaters)
-  );
+  const [selectedTheaters, setSelectedTheaters] = useState<
+    SelectorMultipleModel[]
+  >(map(props.selectedTheaters));
+  const [nonSelectedTheaters, setNonSelectedTheaters] = useState<
+    SelectorMultipleModel[]
+  >(map(props.selectedTheaters));
+
+  const [selectedActors, setSelectedActors] = useState<actorMovieDTO[]>([]);
 
   const rule = Yup.string()
     .required("This field is required")
@@ -86,7 +91,37 @@ export default function MoviesForm(props: MoviesFormProps) {
             />
           </div>
 
-            <TypeAheadActors actors={[]} />
+          <TypeAheadActors
+            actors={selectedActors}
+            onAdd={(actors) => {
+              setSelectedActors(actors);
+            }}
+            onRemove={(actors) => {
+              const actorsFiltered = selectedActors.filter(
+                (x) => x.id !== actors.id
+              );
+              setSelectedActors(actorsFiltered);
+            }}
+            uiList={(actor: actorMovieDTO) => (
+              <>
+                {actor.name} /{" "}
+                <input
+                  placeholder="Character"
+                  type="text"
+                  value={actor.character}
+                  onChange={(e) => {
+                    const index = selectedActors.findIndex(
+                      (x) => x.id === actor.id
+                    );
+
+                    const actors = [...selectedActors];
+                    actors[index].character = e.currentTarget.value;
+                    setSelectedActors(actors);
+                  }}
+                />
+              </>
+            )}
+          />
 
           <Button disabled={formikProps.isSubmitting} type="submit">
             Save
@@ -106,5 +141,5 @@ export interface MoviesFormProps {
   ) => void;
   selectedGenres: genreDTO[];
   nonSelectedGenres: genreDTO[];
-  selectedTheaters:theaterDTO[];
+  selectedTheaters: theaterDTO[];
 }
