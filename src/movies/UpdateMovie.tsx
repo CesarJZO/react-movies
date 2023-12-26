@@ -18,6 +18,8 @@ export default function UpdateMovie() {
         selectedGenres={[]}
         nonSelectedGenres={[]}
         selectedTheaters={[]}
+        nonSelectedTheaters={[]}
+        selectedActors={[]}
       />
     </>
   );

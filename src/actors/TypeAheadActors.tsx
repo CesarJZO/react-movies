@@ -1,6 +1,6 @@
 import { Typeahead } from "react-bootstrap-typeahead";
 import { actorMovieDTO } from "./actors.model";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 
 export default function TypeAheadActors({
   actors,
@@ -8,6 +8,27 @@ export default function TypeAheadActors({
   onRemove,
   uiList,
 }: TypeAheadActorsProps) {
+  const [draggedActor, setDraggedActor] = useState<actorMovieDTO | undefined>(undefined);
+
+  const handleDragStart = (actor: actorMovieDTO) => {
+    setDraggedActor(actor);
+  }
+
+  const handleDragOver = (actor: actorMovieDTO) => {
+    if (!draggedActor) return;
+
+    if (actor.id !== draggedActor.id) {
+      const draggedActorIndex = actors.findIndex(x => x.id === draggedActor.id);
+      const actorIndex = actors.findIndex(x => x.id === actor.id);
+
+      const actorsCopy = [...actors];
+      actorsCopy[actorIndex] = draggedActor;
+      actorsCopy[draggedActorIndex] = actor;
+
+      onAdd(actorsCopy);
+    }
+  }
+
   return (
     <>
       <label>Actors</label>
@@ -41,7 +62,11 @@ export default function TypeAheadActors({
 
       <ul>
         {actors.map((actor) => (
-          <li key={actor.id}>
+          <li key={actor.id}
+            draggable
+            onDragStart={() => handleDragStart(actor)}
+            onDragOver={() => handleDragOver(actor)}
+          >
             {uiList(actor)}
             <button onClick={() => onRemove!(actor)}>X</button>
           </li>

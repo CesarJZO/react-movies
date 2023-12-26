@@ -40,9 +40,9 @@ export default function MoviesForm(props: MoviesFormProps) {
   >(map(props.selectedTheaters));
   const [nonSelectedTheaters, setNonSelectedTheaters] = useState<
     SelectorMultipleModel[]
-  >(map(props.selectedTheaters));
+    >(map(props.nonSelectedTheaters));
 
-  const [selectedActors, setSelectedActors] = useState<actorMovieDTO[]>([]);
+  const [selectedActors, setSelectedActors] = useState<actorMovieDTO[]>(props.selectedActors);
 
   const rule = Yup.string()
     .required("This field is required")
@@ -52,6 +52,8 @@ export default function MoviesForm(props: MoviesFormProps) {
       initialValues={model}
       onSubmit={(values, actions) => {
         values.genresIds = selectedGenres.map((value) => value.id);
+        values.theatersIds = selectedTheaters.map((value) => value.id);
+        values.actors = selectedActors;
         onSubmit(values, actions);
       }}
       validationSchema={Yup.object({
@@ -142,4 +144,6 @@ export interface MoviesFormProps {
   selectedGenres: genreDTO[];
   nonSelectedGenres: genreDTO[];
   selectedTheaters: theaterDTO[];
+  nonSelectedTheaters: theaterDTO[];
+  selectedActors: actorMovieDTO[];
 }
