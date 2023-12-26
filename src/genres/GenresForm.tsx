@@ -3,7 +3,7 @@ import { Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 
 import Button from "../utils/Button";
-import FormGroupText from "../utils/FormGroupText";
+import FormGroupText from "../utils/forms/FormGroupText";
 import { genreCreationDTO } from "./genres.model";
 
 export default function GenresForm({ model, onSubmit }: GenresFormProps) {

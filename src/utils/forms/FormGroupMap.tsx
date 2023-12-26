@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
-import Map from "./Map";
-import { coordsDTO } from "./coords.model";
+import Map from "../Map";
+import { coordsDTO } from "../coords.model";
 
 export default function FormGroupMap({
   coords,

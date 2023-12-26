@@ -1,9 +1,9 @@
 import { Form, Formik, FormikHelpers } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import FormGroupText from "../utils/FormGroupText.tsx";
+import FormGroupText from "../utils/forms/FormGroupText.tsx";
 import Button from "../utils/Button.tsx";
-import FormGroupMap from "../utils/FormGroupMap.tsx";
+import FormGroupMap from "../utils/forms/FormGroupMap.tsx";
 import { coordsDTO } from "../utils/coords.model";
 
 export default function TheatersForm({ model, onSubmit }: TheatersFormProps) {

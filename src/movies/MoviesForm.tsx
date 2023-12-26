@@ -1,10 +1,10 @@
 import { Form, Formik, FormikHelpers } from "formik";
 import { movieCreationDTO } from "./movies.model";
 import * as Yup from "yup";
-import FormGroupText from "../utils/FormGroupText";
-import FormGroupCheckBox from "../utils/FormGroupCheckBox";
-import FormGroupDate from "../utils/FormGroupDate";
-import FormGroupImage from "../utils/FormGroupImage";
+import FormGroupText from "../utils/forms/FormGroupText";
+import FormGroupCheckBox from "../utils/forms/FormGroupCheckBox";
+import FormGroupDate from "../utils/forms/FormGroupDate";
+import FormGroupImage from "../utils/forms/FormGroupImage";
 import Button from "../utils/Button";
 import { Link } from "react-router-dom";
 
