@@ -12,6 +12,8 @@ export default function CreateMovie() {
           trailer: "",
         }}
         onSubmit={(values) => console.log(values)}
+        selectedGenres={[]}
+        nonSelectedGenres={[]}
       />
     </>
   );
