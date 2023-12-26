@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import FormGroupText from "../utils/FormGroupText.tsx";
 import Button from "../utils/Button.tsx";
-import Map from "../utils/Map.tsx";
+import FormGroupMap from "../utils/FormGroupMap.tsx";
 
 export default function TheatersForm({ model, onSubmit }: TheatersFormProps) {
   return (
@@ -20,7 +20,7 @@ export default function TheatersForm({ model, onSubmit }: TheatersFormProps) {
         <Form>
           <FormGroupText field="name" label="Name" />
 
-          <Map height="300px" />
+          <FormGroupMap latField={"latitude"} lngField={"longitude"} />
 
           <Button disabled={formikProps.isSubmitting} type="submit">
             Save
