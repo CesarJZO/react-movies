@@ -1,0 +1,20 @@
+.menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.menu nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
