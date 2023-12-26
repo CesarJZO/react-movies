@@ -4,8 +4,21 @@ import * as Yup from "yup";
 import FormGroupText from "../utils/FormGroupText.tsx";
 import Button from "../utils/Button.tsx";
 import FormGroupMap from "../utils/FormGroupMap.tsx";
+import { coordsDTO } from "../utils/coords.model";
 
 export default function TheatersForm({ model, onSubmit }: TheatersFormProps) {
+  function transformCoord(): coordsDTO[] | undefined {
+    if (model.latitude && model.longitude) {
+      console.log(model.latitude);
+      const response: coordsDTO = {
+        lat: model.latitude,
+        lng: model.longitude,
+      };
+      return [response];
+    }
+    return undefined;
+  }
+
   return (
     <Formik
       initialValues={model}
@@ -20,7 +33,11 @@ export default function TheatersForm({ model, onSubmit }: TheatersFormProps) {
         <Form>
           <FormGroupText field="name" label="Name" />
 
-          <FormGroupMap latField={"latitude"} lngField={"longitude"} />
+          <FormGroupMap
+            latField={"latitude"}
+            lngField={"longitude"}
+            coords={transformCoord()}
+          />
 
           <Button disabled={formikProps.isSubmitting} type="submit">
             Save

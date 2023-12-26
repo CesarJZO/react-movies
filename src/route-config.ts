@@ -31,7 +31,7 @@ const routes = [
   { path: "/movies", component: MoviesIndex },
 
   { path: "theaters/create", component: CreateTheater },
-  { path: "theaters/update", component: UpdateTheater },
+  { path: "theaters/update/:id", component: UpdateTheater },
   { path: "theaters", component: TheatersIndex },
 
   { path: "/", component: LandingPage },
