@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 
-import { movieCreationDTO } from "./movies.model";
 import FormGroupText from "../utils/forms/FormGroupText";
 import FormGroupCheckBox from "../utils/forms/FormGroupCheckBox";
 import FormGroupDate from "../utils/forms/FormGroupDate";
@@ -13,20 +12,30 @@ import SelectorMultiple, {
   SelectorMultipleModel,
 } from "../utils/SelectorMultiple";
 import Button from "../utils/Button";
+
+import { movieCreationDTO } from "./movies.model";
 import { genreDTO } from "../genres/genres.model";
-import { act } from "react-dom/test-utils";
+import { theaterDTO } from "../theaters/theaters.model";
 
 export default function MoviesForm(props: MoviesFormProps) {
   const { model, onSubmit } = props;
+
+  const map = (array: { id: number, name: string }[]): SelectorMultipleModel[] => {
+    return array.map(value => ({ id: value.id, name: value.name }))
+  }
+
   const [selectedGenres, setSelectedGenres] = useState<SelectorMultipleModel[]>(
-    props.selectedGenres.map((genre) => {
-      return { id: genre.id, name: genre.name };
-    })
+    map(props.selectedGenres)
   );
   const [nonSelectedGenres, setNonSelectedGenres] = useState<SelectorMultipleModel[]>(
-    props.nonSelectedGenres.map((genre) => {
-      return { id: genre.id, name: genre.name };
-    })
+    map(props.nonSelectedGenres)
+  );
+
+  const [selectedTheaters, setSelectedTheaters] = useState<SelectorMultipleModel[]>(
+    map(props.selectedTheaters)
+  );
+  const [nonSelectedTheaters, setNonSelectedTheaters] = useState<SelectorMultipleModel[]>(
+    map(props.selectedTheaters)
   );
 
   const rule = Yup.string()
@@ -65,6 +74,16 @@ export default function MoviesForm(props: MoviesFormProps) {
               }}
             />
           </div>
+          <div>
+            <SelectorMultiple
+              selected={selectedTheaters}
+              notSelected={nonSelectedTheaters}
+              onChange={(selected, nonSelected) => {
+                setSelectedTheaters(selected);
+                setNonSelectedTheaters(nonSelected);
+              }}
+            />
+          </div>
 
           <Button disabled={formikProps.isSubmitting} type="submit">
             Save
@@ -84,4 +103,5 @@ export interface MoviesFormProps {
   ) => void;
   selectedGenres: genreDTO[];
   nonSelectedGenres: genreDTO[];
+  selectedTheaters:theaterDTO[];
 }

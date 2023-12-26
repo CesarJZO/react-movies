@@ -17,6 +17,7 @@ export default function UpdateMovie() {
         onSubmit={(values) => console.log(values)}
         selectedGenres={[]}
         nonSelectedGenres={[]}
+        selectedTheaters={[]}
       />
     </>
   );
