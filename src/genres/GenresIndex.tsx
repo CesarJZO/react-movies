@@ -6,7 +6,6 @@ import { urlGenres } from "../utils/endpoints";
 
 export default function GenresIndex() {
   useEffect(() => {
-    console.log(urlGenres);
     axios
       .get(urlGenres)
       .then((response: AxiosResponse<genreDTO>) => {
