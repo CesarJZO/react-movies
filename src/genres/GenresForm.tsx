@@ -12,7 +12,9 @@ export default function GenresForm({ model, onSubmit }: GenresFormProps) {
       initialValues={model}
       onSubmit={onSubmit}
       validationSchema={Yup.object({
-        name: Yup.string().required("Required").firstLetterUppercase(),
+        name: Yup.string().required("Required")
+          .max(20, "The field can only contain 20 characters")
+          // .firstLetterUppercase(),
       })}
     >
       {(formikProps) => (
