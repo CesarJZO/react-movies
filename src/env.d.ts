@@ -8,5 +8,8 @@ interface ImportMetaEnv {
 }
 
 interface ImportMeta {
+  /**
+   * The environment variables available in the application.
+   */
   readonly env: ImportMetaEnv;
 }
