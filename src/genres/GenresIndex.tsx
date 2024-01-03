@@ -7,6 +7,7 @@ import GenericList from "../utils/GenericList";
 import Button from "../utils/Button";
 import Pagination from "../utils/Pagination";
 import ErrorPrinter from "../utils/ErrorPrinter";
+import confirm from "../utils/ConfirmModel";
 
 export default function GenresIndex() {
   const defaultRecordsPerPage = 10;
@@ -26,31 +27,30 @@ export default function GenresIndex() {
     try {
       await axios.delete(`${urlGenres}/${id}`);
       loadData();
-    }
-    catch (error) {
+    } catch (error) {
       setErrors((error as any).response.data);
     }
-  }
+  };
 
   function loadData() {
     axios
-    .get(urlGenres, {
-      params: {
-        page: currentPage,
-        recordsPerPage: recordsPerPage,
-      },
-    })
-    .then((response: AxiosResponse<genreDTO[]>) => {
-      const totalRecords = parseInt(
-        response.headers["totalamountofrecords"],
-        10
-      );
+      .get(urlGenres, {
+        params: {
+          page: currentPage,
+          recordsPerPage: recordsPerPage,
+        },
+      })
+      .then((response: AxiosResponse<genreDTO[]>) => {
+        const totalRecords = parseInt(
+          response.headers["totalamountofrecords"],
+          10
+        );
 
-      setTotalAmountOfRecords(Math.ceil(totalRecords / recordsPerPage));
+        setTotalAmountOfRecords(Math.ceil(totalRecords / recordsPerPage));
 
-      console.log(response.data);
-      setGenres(response.data);
-    });
+        console.log(response.data);
+        setGenres(response.data);
+      });
   }
 
   return (
@@ -92,9 +92,9 @@ export default function GenresIndex() {
               <tr key={genre.id}>
                 <td>
                   <Link to={`/genres/update/${genre.id}`}>Edit</Link>
-                  <Button
-                    onClick={() => deleteGenre(genre.id)}
-                  >Delete</Button>
+                  <Button onClick={() => confirm(() => deleteGenre(genre.id))}>
+                    Delete
+                  </Button>
                 </td>
                 <td>{genre.name}</td>
               </tr>
