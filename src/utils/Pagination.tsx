@@ -53,7 +53,15 @@ export default function Pagination({
 
   return (
     <nav>
-      <ul>
+      <ul style={
+        {
+          listStyleType: "none",
+          padding: "0",
+          display: "flex",
+          gap: "8px",
+          margin: "1em",
+        }
+      }>
         {linksList.map(link => (
           <li key={link.text}>
             <button
