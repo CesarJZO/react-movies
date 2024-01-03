@@ -8,28 +8,32 @@ import Button from "../utils/Button";
 import Pagination from "../utils/Pagination";
 
 export default function GenresIndex() {
+  const defaultRecordsPerPage = 10;
+
   const [genres, setGenres] = useState<genreDTO[]>([]);
   const [totalAmountOfRecords, setTotalAmountOfRecords] = useState(0);
-  const [recordsPerPage, setRecordsPerPage] = useState(1);
+  const [recordsPerPage, setRecordsPerPage] = useState(defaultRecordsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    axios.get(urlGenres, {
-      params: {
-        page: currentPage,
-        recordsPerPage: recordsPerPage,
-      },
-    }).then((response: AxiosResponse<genreDTO[]>) => {
-      const totalRecords = parseInt(
-        response.headers["totalamountofrecords"],
-        10
-      );
+    axios
+      .get(urlGenres, {
+        params: {
+          page: currentPage,
+          recordsPerPage: recordsPerPage,
+        },
+      })
+      .then((response: AxiosResponse<genreDTO[]>) => {
+        const totalRecords = parseInt(
+          response.headers["totalamountofrecords"],
+          10
+        );
 
-      setTotalAmountOfRecords(Math.ceil(totalRecords / recordsPerPage));
+        setTotalAmountOfRecords(Math.ceil(totalRecords / recordsPerPage));
 
-      console.log(response.data);
-      setGenres(response.data);
-    });
+        console.log(response.data);
+        setGenres(response.data);
+      });
   }, [currentPage, recordsPerPage]);
 
   return (
@@ -37,6 +41,18 @@ export default function GenresIndex() {
       <h2>Genres</h2>
 
       <Link to="/genres/create">Create Genre</Link>
+
+      <select
+        defaultValue={defaultRecordsPerPage}
+        onChange={(e) => {
+          setCurrentPage(1);
+          setRecordsPerPage(parseInt(e.currentTarget.value, 10));
+        }}
+      >
+        <option>1</option>
+        <option>5</option>
+        <option>10</option>
+      </select>
 
       <Pagination
         currentPage={currentPage}

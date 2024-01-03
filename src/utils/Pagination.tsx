@@ -57,6 +57,7 @@ export default function Pagination({
         {linksList.map(link => (
           <li key={link.text}>
             <button
+              style={{backgroundColor: link.active ? "" : "black"}}
               onClick={() => selectPage(link)}
               disabled={!link.enabled}
               className={`btn ${link.active ? "btn-primary" : "btn-secondary"}`}
