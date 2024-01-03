@@ -72,7 +72,7 @@ export default function GenresIndex() {
             {genres?.map((genre) => (
               <tr key={genre.id}>
                 <td>
-                  <Link to={`/genres/edit/${genre.id}`}>Edit</Link>
+                  <Link to={`/genres/update/${genre.id}`}>Edit</Link>
                   <Button>Delete</Button>
                 </td>
                 <td>{genre.name}</td>
