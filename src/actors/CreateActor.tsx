@@ -5,6 +5,7 @@ import { urlActors } from "../utils/endpoints";
 import { useNavigate } from "react-router-dom";
 import ErrorPrinter from "../utils/ErrorPrinter";
 import { useState } from "react";
+import { actorToFormData } from "../utils/formDataUtils";
 
 export default function CreateActor() {
   const navigate = useNavigate();
@@ -13,7 +14,14 @@ export default function CreateActor() {
 
   async function create(actor: actorCreationDTO) {
     try {
-      await axios.post(urlActors, actor);
+      const formData = actorToFormData(actor);
+      console.log(actor);
+      await axios({
+        method: "post",
+        url: urlActors,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       navigate("/actors");
     } catch (error) {
       setErrors((error as any).response.data);
