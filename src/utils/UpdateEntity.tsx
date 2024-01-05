@@ -10,6 +10,7 @@ export default function UpdateEntity<TCreation, TRead>({
   entityName,
   children,
   transform,
+  transformToFormData,
 }: UpdateEntityProps<TCreation, TRead>) {
   const { id } = useParams();
 
@@ -26,7 +27,18 @@ export default function UpdateEntity<TCreation, TRead>({
 
   const edit = async (entity: TCreation) => {
     try {
-      await axios.put(`${url}/${id}`, entity);
+      if (transformToFormData) {
+        const formData = transformToFormData(entity);
+        await axios({
+          method: "put",
+          url: `${url}/${id}`,
+          data: formData,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      }
+      else { 
+        await axios.put(`${url}/${id}`, entity);
+      }
       navigate(indexUrl);
     } catch (error) {
       setErrors((error as any).response.data);
@@ -53,6 +65,7 @@ interface UpdateEntityProps<TCreation, TRead> {
     edit: (entity: TCreation) => void
   ) => ReactElement;
   transform: (entity: TRead) => TCreation;
+  transformToFormData?: (model: TCreation) => FormData;
 }
 
 UpdateEntity.defaultProps = {

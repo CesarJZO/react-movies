@@ -1,15 +1,30 @@
+import UpdateEntity from "../utils/UpdateEntity";
+import { urlActors } from "../utils/endpoints";
+import { actorToFormData } from "../utils/formDataUtils";
 import ActorsForm from "./ActorsForm";
+import { actorCreationDTO, actorDTO } from "./actors.model";
 
 export default function UpdateActor() {
-  const testImageLink =
-    "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+  const transform = (actor: actorDTO): actorCreationDTO => {
+    return {
+      name: actor.name,
+      pictureURL: actor.picture,
+      biography: actor.biography,
+      dateOfBirth: new Date(actor.dateOfBirth),
+    };
+  };
+
   return (
     <>
-      <h2>Update Actor</h2>
-      <ActorsForm
-        model={{ name: "", dateOfBirth: undefined!, pictureURL: testImageLink }}
-        onSubmit={(values) => console.log(values)}
-      />
+      <UpdateEntity<actorCreationDTO, actorDTO>
+        url={urlActors}
+        indexUrl="/actors"
+        entityName="Actors"
+        transform={transform}
+        transformToFormData={actorToFormData}
+      >
+        {(entity, edit) => <ActorsForm model={entity} onSubmit={edit} />}
+      </UpdateEntity>
     </>
   );
 }

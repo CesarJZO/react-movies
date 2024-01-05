@@ -15,7 +15,6 @@ export default function CreateActor() {
   async function create(actor: actorCreationDTO) {
     try {
       const formData = actorToFormData(actor);
-      console.log(actor);
       await axios({
         method: "post",
         url: urlActors,
